@@ -1,0 +1,8 @@
+import random
+def chatbot(model,intents,input_text,vectorizer):
+    input_text = vectorizer.transform([input_text])
+    tag = model.predict(input_text)[0]
+    for intent in intents:
+        if intent['tag'] == tag:
+            response = random.choice(intent['responses'])
+            return tag,response
